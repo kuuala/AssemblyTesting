@@ -1,14 +1,14 @@
 #include "sequencing.hpp"
+#include <ctime>
 #include <string>
 #include <fstream>
 #include <vector>
 
 using namespace std;
 
-void generate_str(int text_length, string &sourcedna){
-    srand(time(NULL));
-    sourcedna = "sourcerandom.txt";
-    ofstream source(sourcedna);
+void generate_sequence(int text_length, string &source_dna){
+    srand(time(nullptr));
+    ofstream source(source_dna);
     string pattern = "atgc";
     string result_string;
     for(int i = 0; i < text_length; ++i){
@@ -31,7 +31,7 @@ void replicate(int n, string &sourcedna){
 }
 
 void reads_create(const int min_length, const int max_length, const string &sourcedna, const string &readsfile, int &graph_size, vector<string> &reads_vec){
-    srand(time(NULL));
+    srand(time(nullptr));
     ifstream source(sourcedna);
     ofstream reads(readsfile);
     string in;

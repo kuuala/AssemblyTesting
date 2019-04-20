@@ -1,4 +1,5 @@
 #include "simulated_annealing.hpp"
+#include <ctime>
 #include <vector>
 #include <string>
 #include <cmath>

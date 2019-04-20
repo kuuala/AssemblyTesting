@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 #include <string>
 #include "sequencing.hpp"
 #include "assembly.hpp"
@@ -7,56 +6,83 @@
 
 using namespace std;
 
-inline void input_function(string &sourcedna, int &min_reads_length, int &max_reads_length);
+struct data {
+    string source_dna, tested_program;
+    int min_reads_length = 0;
+    int max_reads_length = 0;
+    int sequence_length = 0;
+    bool is_rand = false;
+};
 
-int main() {
-    string sourcedna = "sourcerandom.txt";
-    string readsfile = "reads.txt";
-    string resultdna = "result.txt";
-    vector<vector<int>> graph;
-    vector<string> reads_vec;
-    int graph_size = 0;
-    int max_reads_length;
-    int min_reads_length;
-    input_function(sourcedna, min_reads_length, max_reads_length);
-    cout << endl << "DNA created" << endl;
+void print_help();
+void parse_input(int argc, char *argv[], data &input);
+
+int main(int argc, char *argv[]) {
+    data input;
+    //vector<vector<int>> graph;
+    //vector<string> reads_vec;
+    //int graph_size = 0;
+    if (argc == 2) {
+        if (string(argv[1]) == "-h") {
+            print_help();
+        }
+    } else if (argc == 8) {
+        parse_input(argc, argv, input);
+        if (input.is_rand) {
+            generate_sequence(input.sequence_length, input.source_dna);
+        }
+    } else {
+        cout << "bad input" << endl;
+        print_help();
+    }
+
+
     reads_create(min_reads_length, max_reads_length, sourcedna, readsfile, graph_size, reads_vec);
     cout << "Reads created" << endl;
+    /*
     fill_graph(readsfile, graph_size, graph, max_reads_length);
     cout << "Graph filled" << endl;
     build_dna(resultdna, graph_size, reads_vec, graph);
     cout << "DNA built" << endl;
     cout << endl << "coincidence rate: " << editing_distance(sourcedna, resultdna) << '%' << endl;
+    */
 }
 
-inline void input_function(string &sourcedna, int &min_reads_length, int &max_reads_length){
-    cout << "Input block" << endl;
-    cout << "0 - to create genome sequence random" << endl;
-    cout << "1 - to use existing genome sequence" << endl;
-    int rand_or_exist;
-    cout << "Chose your variant: ";
-    cin >> rand_or_exist;
-    switch (rand_or_exist){
-        case 0:
-            int text_length;
-            cout << "Text length: ";
-            cin >> text_length;
-            if (text_length <= 0) {
-                throw invalid_argument("bad value of text length: " + to_string(text_length));
+void print_help() {
+    cout << "-h - help about tool" << endl;
+    cout << "-r [length] - generate random sequence" << endl;
+    cout << "-e [filename] - use existing sequence" << endl;
+    cout << "-rl [min][max] - min and max reads length" << endl;
+    cout << "-t [exe name] - name of tested program" << endl;
+}
+
+void parse_input(int argc, char *argv[], data &input) {
+    int current = 1;
+    while (current < argc) {
+        if (string(argv[current]) == "-r") {
+            input.is_rand = true;
+            input.source_dna = "source.txt";
+            ++current;
+            input.sequence_length = atoi(argv[current]);
+        } else if (string(argv[current]) == "-e") {
+            input.is_rand = false;
+            ++current;
+            input.source_dna = string(argv[current]);
+        } else if (string(argv[current]) == "-rl") {
+            ++current;
+            input.min_reads_length = atoi(argv[current]);
+            ++current;
+            input.max_reads_length = atoi(argv[current]);
+            if (input.max_reads_length < input.min_reads_length ||
+                input.min_reads_length < 1 ||
+                input.max_reads_length < 1) {
+                cout << "-rl bad values" << endl;
+                exit(0);
             }
-            generate_str(text_length, sourcedna);
-            break;
-        case 1:
-            cout << "File with DNA: ";
-            cin >> sourcedna;
-            break;
-        default:
-            throw invalid_argument("bad value: " + to_string(rand_or_exist));
-            break;
+        } else if (string(argv[current]) == "-t") {
+            ++current;
+            input.tested_program = string(argv[current]);
+        }
+        ++current;
     }
-    cout << endl << "Allowed reads length" << endl;
-    cout << "Min length: ";
-    cin >> min_reads_length;
-    cout << "Max length: ";
-    cin >> max_reads_length;
 }
