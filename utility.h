@@ -3,11 +3,18 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
+#include <fstream>
 
 using namespace std;
 
 struct data {
-    string source_dna, tested_program, reads_filename;
+    string source_dna;
+    string tested_program;
+    string reads_filename;
+    string graph_filename;
+    string output_filename;
+    string result_filename;
     int min_reads_length = 0;
     int max_reads_length = 0;
     int sequence_length = 0;
@@ -17,5 +24,7 @@ struct data {
 void print_help();
 
 void parse_input(int argc, char *argv[], data &input);
+
+void save_graph(vector<vector<int>> &graph, const string &filename);
 
 #endif //ASSEMBLYTESTING_UTILITY_H

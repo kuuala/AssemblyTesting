@@ -38,4 +38,18 @@ void parse_input(int argc, char *argv[], data &input) {
         ++current;
     }
     input.reads_filename = "reads.txt";
+    input.graph_filename = "graph.txt";
+    input.output_filename = "algo_output.txt";
+    input.result_filename = "result.txt";
+}
+
+void save_graph(vector<vector<int>> &graph, const string& filename) {
+    ofstream file(filename);
+    for (auto & i : graph) {
+        for (int j : i) {
+            file << j << ' ';
+        }
+        file << endl;
+    }
+    file.close();
 }
