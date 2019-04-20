@@ -1,6 +1,5 @@
 #include "sequencing.h"
 #include <ctime>
-#include <fstream>
 
 void generate_sequence(int sequence_length, string &source_dna){
     srand(time(nullptr));

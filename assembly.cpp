@@ -1,5 +1,4 @@
 #include "assembly.h"
-#include <fstream>
 
 int intersect(const string& a, const string& b){
     int length_first = a.length();
