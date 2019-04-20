@@ -3,4 +3,4 @@ project(AssemblyTesting)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(AssemblyTesting main.cpp assembly.cpp assembly.hpp levenshtein.cpp levenshtein.hpp sequencing.cpp sequencing.hpp simulated_annealing.cpp simulated_annealing.hpp)
+add_executable(AssemblyTesting main.cpp assembly.cpp assembly.h levenshtein.cpp levenshtein.h sequencing.cpp sequencing.h simulated_annealing.cpp simulated_annealing.h utility.cpp utility.h)

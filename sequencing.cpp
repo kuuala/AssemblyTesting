@@ -1,47 +1,43 @@
-#include "sequencing.hpp"
+#include "sequencing.h"
 #include <ctime>
-#include <string>
 #include <fstream>
-#include <vector>
 
-using namespace std;
-
-void generate_sequence(int text_length, string &source_dna){
+void generate_sequence(int sequence_length, string &source_dna){
     srand(time(nullptr));
     ofstream source(source_dna);
     string pattern = "atgc";
     string result_string;
-    for(int i = 0; i < text_length; ++i){
+    for(int i = 0; i < sequence_length; ++i){
         result_string += pattern[rand()%4];
     }
     source << result_string;
     source.close();
 }
 
-void replicate(int n, string &sourcedna){
-    ifstream source(sourcedna);
+void replicate(string &source_dna, int n){
+    ifstream source(source_dna);
     ofstream repl;
     for(int i = 0; i < n; ++i){
-        source.seekg(0, source.beg);
-        repl.open(sourcedna + "_rep" + to_string(i) + ".txt");
+        source.seekg(0, ifstream::beg);
+        repl.open(source_dna + "_replica_" + to_string(i) + ".txt");
         repl << source.rdbuf();
         repl.close();
     }
     source.close();
 }
 
-void reads_create(const int min_length, const int max_length, const string &sourcedna, const string &readsfile, int &graph_size, vector<string> &reads_vec){
+void reads_create(const data &input, int &graph_size, vector<string> &reads_vec){
     srand(time(nullptr));
-    ifstream source(sourcedna);
-    ofstream reads(readsfile);
+    ifstream source(input.source_dna);
+    ofstream reads(input.reads_filename);
     string in;
     source >> in;
-    int delta = max_length - min_length;
+    int delta = input.max_reads_length - input.min_reads_length;
     int current_index = 0;
     int current_random = 0;
     int ind = 0;
     while(current_index < in.length()){
-        current_random = min_length + rand()%delta;
+        current_random = input.min_reads_length + rand()%delta;
         reads_vec.emplace_back(in.substr(current_index, min(current_random, (int)in.length() - current_index)));
         reads <<  reads_vec[ind] << endl;
         current_index += current_random - rand()%current_random;

@@ -1,4 +1,4 @@
-#include "levenshtein.hpp"
+#include "levenshtein.h"
 #include <fstream>
 #include <string>
 #include <algorithm>

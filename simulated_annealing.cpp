@@ -1,4 +1,4 @@
-#include "simulated_annealing.hpp"
+#include "simulated_annealing.h"
 #include <ctime>
 #include <vector>
 #include <string>
