@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <cstdlib>
 
 using namespace std;
 
@@ -26,5 +27,7 @@ void print_help();
 void parse_input(int argc, char *argv[], data &input);
 
 void save_graph(vector<vector<int>> &graph, const string &filename);
+
+void auto_remove();
 
 #endif //ASSEMBLYTESTING_UTILITY_H

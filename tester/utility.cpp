@@ -2,6 +2,7 @@
 
 void print_help() {
     cout << "-h - help about tool" << endl;
+    cout << "-ar - remove all *.txt file in work directory" << endl;
     cout << "-r [length] - generate random sequence" << endl;
     cout << "-e [filename] - use existing sequence" << endl;
     cout << "-rl [min][max] - min and max reads length" << endl;
@@ -52,4 +53,12 @@ void save_graph(vector<vector<int>> &graph, const string& filename) {
         file << endl;
     }
     file.close();
+}
+
+void auto_remove() {
+#ifdef __linux__
+    system("rm *.txt");
+#elif _WIN32
+    system("del *.txt");
+#endif
 }
