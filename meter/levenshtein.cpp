@@ -31,9 +31,9 @@ int wagner_fischer(const string &first, const string &second){
     return d_matrix[source_length][result_length];
 }
 
-double editing_distance(const string &sourcedna, const string &resultdna){
-    ifstream source(sourcedna);
-    ifstream result(resultdna);
+double editing_distance(const string &source_dna, const string &result_dna){
+    ifstream source(source_dna);
+    ifstream result(result_dna);
     string in, out;
     source >> in;
     result >> out;

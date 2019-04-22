@@ -5,6 +5,6 @@
 
 using std::string;
 
-double editing_distance(const string &sourcedna, const string &resultdna);
+double editing_distance(const string &source_dna, const string &result_dna);
 
 #endif //ASSEMBLYTESTING_LEVENSHTEIN_H
