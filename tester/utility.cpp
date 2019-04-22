@@ -42,8 +42,9 @@ void parse_input(int argc, char *argv[], data &input) {
     input.result_dna = "result.txt";
 }
 
-void save_graph(vector<vector<int>> &graph, const string& filename) {
+void save_graph(int graph_size, vector<vector<int>> &graph, const string& filename) {
     ofstream file(filename);
+    file << graph_size << endl;
     for (auto & i : graph) {
         for (int j : i) {
             file << j << ' ';

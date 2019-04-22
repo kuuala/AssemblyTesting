@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
         }
         reads_create(input, graph_size, reads_vec);
         fill_graph(input, graph_size, graph);
-        save_graph(graph, input.graph_filename);
+        save_graph(graph_size, graph, input.graph_filename);
         system((input.tested_program + " -g " + input.graph_filename + " -o " + input.output_filename).c_str());
         build_dna(input.output_filename, input.result_dna, graph_size, reads_vec, graph);
         system((input.meter_program + " " + input.source_dna + " " + input.result_dna).c_str());

@@ -27,7 +27,7 @@ void print_help();
 
 void parse_input(int argc, char *argv[], data &input);
 
-void save_graph(vector<vector<int>> &graph, const string &filename);
+void save_graph(int graph_size, vector<vector<int>> &graph, const string &filename);
 
 void auto_remove();
 
