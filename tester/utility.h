@@ -12,10 +12,11 @@ using namespace std;
 struct data {
     string source_dna;
     string tested_program;
+    string meter_program;
     string reads_filename;
     string graph_filename;
     string output_filename;
-    string result_filename;
+    string result_dna;
     int min_reads_length = 0;
     int max_reads_length = 0;
     int sequence_length = 0;

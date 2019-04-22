@@ -7,6 +7,7 @@ void print_help() {
     cout << "-e [filename] - use existing sequence" << endl;
     cout << "-rl [min][max] - min and max reads length" << endl;
     cout << "-t [exe name] - name of tested program" << endl;
+    cout << "-m [exe name] - name of meter" << endl;
 }
 
 void parse_input(int argc, char *argv[], data &input) {
@@ -15,17 +16,13 @@ void parse_input(int argc, char *argv[], data &input) {
         if (string(argv[current]) == "-r") {
             input.is_rand = true;
             input.source_dna = "source.txt";
-            ++current;
-            input.sequence_length = atoi(argv[current]);
+            input.sequence_length = atoi(argv[++current]);
         } else if (string(argv[current]) == "-e") {
             input.is_rand = false;
-            ++current;
-            input.source_dna = string(argv[current]);
+            input.source_dna = string(argv[++current]);
         } else if (string(argv[current]) == "-rl") {
-            ++current;
-            input.min_reads_length = atoi(argv[current]);
-            ++current;
-            input.max_reads_length = atoi(argv[current]);
+            input.min_reads_length = atoi(argv[++current]);
+            input.max_reads_length = atoi(argv[++current]);
             if (input.max_reads_length < input.min_reads_length ||
                 input.min_reads_length < 1 ||
                 input.max_reads_length < 1) {
@@ -33,15 +30,16 @@ void parse_input(int argc, char *argv[], data &input) {
                 exit(0);
             }
         } else if (string(argv[current]) == "-t") {
-            ++current;
-            input.tested_program = string(argv[current]);
+            input.tested_program = string(argv[++current]);
+        } else if (string(argv[current]) == "-m") {
+            input.meter_program = string(argv[++current]);
         }
         ++current;
     }
     input.reads_filename = "reads.txt";
     input.graph_filename = "graph.txt";
     input.output_filename = "algo_output.txt";
-    input.result_filename = "result.txt";
+    input.result_dna = "result.txt";
 }
 
 void save_graph(vector<vector<int>> &graph, const string& filename) {
