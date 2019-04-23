@@ -1,6 +1,6 @@
 [**Binaries**](../../tree/master/bin) - compiled binaryes with example.bat
 
-[**Commis_voyager**](../../tree/master/commis_voyager) - solver door-to-door problem
+[**Solver**](../../tree/master/solver) - solver door-to-door problem
 
 [**Meter**](../../tree/master/meter) - accuracy calculator
 
