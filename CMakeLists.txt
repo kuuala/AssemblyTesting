@@ -9,7 +9,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "../bin")
 add_executable(tester tester/main.cpp tester/assembly.cpp tester/assembly.h
         tester/sequencing.cpp tester/sequencing.h tester/utility.cpp tester/utility.h)
 
-add_executable(commis_voyager commis_voyager/main.cpp commis_voyager/simulated_annealing.cpp
-        commis_voyager/simulated_annealing.h commis_voyager/utility.cpp commis_voyager/utility.h)
+add_executable(solver solver/main.cpp solver/simulated_annealing.cpp
+        solver/simulated_annealing.h solver/utility.cpp solver/utility.h)
 
 add_executable(meter meter/main.cpp meter/levenshtein.cpp meter/levenshtein.h)

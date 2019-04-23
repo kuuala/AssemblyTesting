@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
             print_help();
         }
     } else {
-        cout << "bad input in commis_voyager" << endl;
+        cout << "bad input in solver" << endl;
         print_help();
     }
 }
