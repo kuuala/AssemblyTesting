@@ -1,3 +1,5 @@
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](../../tree/master/LICENSE)
+
 [**Binaries**](../../tree/master/bin) - compiled binaryes with example.bat
 
 [**Solver**](../../tree/master/solver) - solver door-to-door problem
