@@ -4,7 +4,6 @@
 #include <algorithm>
 #include <vector>
 
-using std::string;
 using std::vector;
 using std::ifstream;
 using std::min;

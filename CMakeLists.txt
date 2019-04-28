@@ -12,4 +12,5 @@ add_executable(tester tester/main.cpp tester/assembly.cpp tester/assembly.h
 add_executable(solver solver/main.cpp solver/simulated_annealing.cpp
         solver/simulated_annealing.h solver/utility.cpp solver/utility.h)
 
-add_executable(meter meter/main.cpp meter/levenshtein.cpp meter/levenshtein.h)
+add_executable(meter meter/main.cpp meter/levenshtein.cpp meter/levenshtein.h meter/ssw.c meter/ssw.h
+        meter/ssw_cpp.cpp meter/ssw_cpp.h)
